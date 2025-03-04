@@ -13,7 +13,7 @@
 |降压模块|12-80V转5V5A，与USB接口和XT30U接口焊接在一起      |
 |USB接头|![USB](media/USB.png)      |
 |XT30U-M公头|![XT30U](media/XT30U.png)     |
-|3D打印支架|![bracket](media/bracket.png)      |
+|3D打印支架|![bracket](media/bracket.png)stl文件见bracket文件夹|
 ---
 ## 部署
 已提供量化后的bin模型以及原生onnx文件，可直接运行
