@@ -13,7 +13,7 @@ This warehouse is based on [walk-these-ways-go2](https://github.com/Teddy-Liao/w
 |Voltage reduction module|12-80V to 5V5A |
 |USB connector|![USB](media/USB.png)      |
 |XT30U-M|![XT30U](media/XT30U.png)     |
-|bracket|![bracket](media/bracket.png) The stl file can be found in the bracket folder|
+|bracket|![bracket](media/bracket.jpg) The stl file can be found in the bracket folder|
 ---
 ## Deploy
 The quantified bin model and onnx model have been provided, which can be run directly
