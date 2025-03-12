@@ -4,6 +4,8 @@
 
 This warehouse is based on [walk-these-ways-go2](https://github.com/Teddy-Liao/walk-these-ways-go2) and has been adapted to RDK X5. Currently, we mainly introduce the deployment part
 
+Please refer to https://developer.d-robotics.cc/forumDetail/266441979142197476 for detailed instructions
+
 ---
 ## Material
 |name   | notes   |
