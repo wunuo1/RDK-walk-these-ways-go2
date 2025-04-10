@@ -2,7 +2,7 @@
 
 ## 概述
 
-此仓库以[walk-these-ways-go2](https://github.com/Teddy-Liao/walk-these-ways-go2)为基础，与RDK X5进行了适配，目前主要介绍部署部分
+此仓库以[walk-these-ways-go2](https://github.com/Teddy-Liao/walk-these-ways-go2)为基础，与RDK S100进行了适配，目前主要介绍部署部分
 
 详细说明请参考：https://developer.d-robotics.cc/forumDetail/266441979142197476
 
@@ -11,9 +11,9 @@
 |名称   | 备注   |
 |------|--------|
 |宇树Go2|无      |
-|RDK X5|无      |
-|降压模块|12-80V转5V5A，与USB接口和XT30U接口焊接在一起      |
-|USB接头|![USB](media/USB.png)      |
+|RDK S100|无      |
+|降压模块|12-80V转20v，与DC接口和XT30U接口焊接在一起 |
+|DC5.5-2.1公头|![DC](media/DC.png)      |
 |XT30U-M公头|![XT30U](media/XT30U.png)     |
 |3D打印支架|![bracket](media/bracket.jpg)stl文件见bracket文件夹|
 ---
@@ -60,7 +60,7 @@ make
 
 ### 模型推理库
 ```bash
-git clone https://github.com/wunuo1/model_task.git -b x5
+git clone https://github.com/wunuo1/model_task.git -b s100
 mkdir build
 cd build
 cmake ..
@@ -71,7 +71,7 @@ cp libmodel_task.so RDK-walk-these-ways-go2/go2_gym_deploy/scripts
 
 
 ### 验证连接
-RDK X5连接Go2，测试网路连接是否正常
+RDK S100连接Go2，测试网路连接是否正常
 ```bash
 ping 192.168.123.161
 ```
@@ -93,8 +93,8 @@ sudo ./lcm_position_go2 eth0
 打开新终端并运行
 ```bash
 cd go2_gym_deploy/scripts
-python deploy_policy_x5.py
-#提供onnx运行脚本，感兴趣可以使用deploy_policy_x5_onnx.py
+python deploy_policy_s100.py
+#提供onnx运行脚本，感兴趣可以使用deploy_policy_s100_onnx.py
 ```
 根据log的提示，按[R2]健启动控制器
 

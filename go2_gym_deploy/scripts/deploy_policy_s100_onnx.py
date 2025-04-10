@@ -1,15 +1,19 @@
 import glob
 import pickle as pkl
+import os
 import lcm
 import sys
 import libmodel_task
+import numpy as np
+import pathlib
+import onnxruntime as ort
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from go2_gym_deploy.utils.deployment_runner import DeploymentRunner
 from go2_gym_deploy.envs.lcm_agent import LCMAgent
 from go2_gym_deploy.utils.cheetah_state_estimator import StateEstimator
 from go2_gym_deploy.utils.command_profile import *
-import numpy as np
-import pathlib
-import onnxruntime as ort
+
 
 # lcm多播通信的标准格式
 lc = lcm.LCM("udpm://239.255.76.67:7667?ttl=255")
@@ -66,19 +70,18 @@ def load_policy(logdir):
     adaptation_model = libmodel_task.ModelTask()
     # 初始化模型
 
-    session_adaptation = ort.InferenceSession("../../model/adaptation_module_x511.onnx", providers=["CPUExecutionProvider"])
-    session_body = ort.InferenceSession("../../model/body_x511.onnx", providers=["CPUExecutionProvider"])
+    session_adaptation = ort.InferenceSession("../../model/adaptation_module_s100.onnx", providers=["CPUExecutionProvider"])
+    session_body = ort.InferenceSession("../../model/body_s100.onnx", providers=["CPUExecutionProvider"])
 
     input_name_adaptation = session_adaptation.get_inputs()[0].name
     input_name_body = session_body.get_inputs()[0].name
 
     def policy(obs, info):
-        i = 0
         loaded_data = obs["obs_history"].numpy()
 
         outputs_adaptation = session_adaptation.run(None, {input_name_adaptation: loaded_data})
         outputs_adaptation = np.array(outputs_adaptation, dtype=np.float32)
-        print(outputs_adaptation.reshape(1, 2))
+
         body_input = np.concatenate((loaded_data, outputs_adaptation.reshape(1, 2)), axis=-1)
 
         outputs_body = session_body.run(None, {input_name_body: body_input})

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This warehouse is based on [walk-these-ways-go2](https://github.com/Teddy-Liao/walk-these-ways-go2) and has been adapted to RDK X5. Currently, we mainly introduce the deployment part
+This warehouse is based on [walk-these-ways-go2](https://github.com/Teddy-Liao/walk-these-ways-go2) and has been adapted to RDK S100. Currently, we mainly introduce the deployment part
 
 Please refer to https://developer.d-robotics.cc/forumDetail/266441979142197476 for detailed instructions
 
@@ -11,9 +11,9 @@ Please refer to https://developer.d-robotics.cc/forumDetail/266441979142197476 f
 |name   | notes   |
 |------|--------|
 |Unitree Go2|null      |
-|RDK X5|null      |
-|Voltage reduction module|12-80V to 5V5A |
-|USB connector|![USB](media/USB.png)      |
+|RDK S100|null      |
+|Voltage reduction module|12-80V to 20v |
+|DC5.5-2.1|![DC](media/DC.png)      |
 |XT30U-M|![XT30U](media/XT30U.png)     |
 |bracket|![bracket](media/bracket.jpg) The stl file can be found in the bracket folder|
 ---
@@ -60,7 +60,7 @@ make
 
 ### libmodel_task.so
 ```bash
-git clone https://github.com/wunuo1/model_task.git -b x5
+git clone https://github.com/wunuo1/model_task.git -b s100gong
 mkdir build
 cd build
 cmake ..
@@ -71,7 +71,7 @@ cp libmodel_task.so RDK-walk-these-ways-go2/go2_gym_deploy/scripts
 
 
 ### Verify connection
-RDK X5 connect Go2，test whether the network connection is normal
+RDK S100 connect Go2，test whether the network connection is normal
 ```bash
 ping 192.168.123.161
 ```
@@ -93,8 +93,8 @@ Replace `eth0` with your own network interface address, press `Enter` for severa
 Open a new terminate and run
 ```bash
 cd go2_gym_deploy/scripts
-python deploy_policy_x5.py
-#Provide onnx running scripts, if interested, you can use  eploy_policy_x5_onnx.py
+python deploy_policy_s100.py
+#Provide onnx running scripts, if interested, you can use  eploy_policy_s100_onnx.py
 ```
 According to the hints shown in terminal, Press button [R2] to start the controller
 

@@ -3,13 +3,17 @@ import pickle as pkl
 import lcm
 import sys
 import libmodel_task
+import os
+import numpy as np
+import pathlib
+import torch
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from go2_gym_deploy.utils.deployment_runner import DeploymentRunner
 from go2_gym_deploy.envs.lcm_agent import LCMAgent
 from go2_gym_deploy.utils.cheetah_state_estimator import StateEstimator
 from go2_gym_deploy.utils.command_profile import *
-import numpy as np
-import pathlib
-import torch
+
 # lcm多播通信的标准格式
 lc = lcm.LCM("udpm://239.255.76.67:7667?ttl=255")
 
@@ -64,27 +68,28 @@ def load_policy(logdir):
 
     adaptation_model = libmodel_task.ModelTask()
     # 初始化模型
-    body_model_name = "../../model/body11.bin"
-    adaptation_model_name = "../../model/adaptation_module11.bin"
+    body_model_name = "../../model/body_s100.hbm"
+    adaptation_model_name = "../../model/adaptation_module_s100.hbm"
 
     body_model.ModelInit(body_model_name)
     adaptation_model.ModelInit(adaptation_model_name)
 
     def policy(obs, info):
-        i = 0
         loaded_data = obs["obs_history"].numpy()
-        adaptation_model_result = adaptation_model.ModelInfer(loaded_data)
-
-        # adaptation_model_result = np.array(adaptation_model_result, dtype=np.float32)
-        adaptation_model_result = adaptation_model_result.reshape(1,2)
+        loaded_data = loaded_data.reshape(1, 1, 2100)
+        loaded_data_list = [loaded_data]
+        adaptation_model_result = adaptation_model.ModelInfer(loaded_data_list)
+        adaptation_model_result = np.array(adaptation_model_result)
+        
+        adaptation_model_result = adaptation_model_result.reshape(1, 1, 2)
 
         body_input = np.concatenate((loaded_data, adaptation_model_result), axis=-1)
-        total_sum = np.sum(body_input)
 
-        # print("所有值的和:", total_sum)
-        action = body_model.ModelInfer(body_input)
+        body_input_list = [body_input]
+        action = body_model.ModelInfer(body_input_list)
+        action = np.array(action)
         action = action.reshape(1, 12)
-        # print(action)
+
         return torch.from_numpy(action)
 
     return policy
