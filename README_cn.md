@@ -15,7 +15,7 @@
 |降压模块|12-80V转20v，与DC接口和XT30U接口焊接在一起 |
 |DC5.5-2.1公头|![DC](media/DC.png)      |
 |XT30U-M公头|![XT30U](media/XT30U.png)     |
-|3D打印支架|![bracket](media/bracket.jpg)stl文件见bracket文件夹|
+|3D打印支架|![bracket](media/bracket_s100.png)stl文件见bracket文件夹|
 ---
 ## 部署
 已提供量化后的bin模型以及原生onnx文件，可直接运行

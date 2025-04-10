@@ -15,7 +15,7 @@ Please refer to https://developer.d-robotics.cc/forumDetail/286589986407833603 f
 |Voltage reduction module|12-80V to 20v |
 |DC5.5-2.1|![DC](media/DC.png)      |
 |XT30U-M|![XT30U](media/XT30U.png)     |
-|bracket|![bracket](media/bracket.jpg) The stl file can be found in the bracket folder|
+|bracket|![bracket](media/bracket_s100.png) The stl file can be found in the bracket folder|
 ---
 ## Deploy
 The quantified bin model and onnx model have been provided, which can be run directly
