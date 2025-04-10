@@ -4,7 +4,7 @@
 
 此仓库以[walk-these-ways-go2](https://github.com/Teddy-Liao/walk-these-ways-go2)为基础，与RDK S100进行了适配，目前主要介绍部署部分
 
-详细说明请参考：https://developer.d-robotics.cc/forumDetail/266441979142197476
+详细说明请参考：https://developer.d-robotics.cc/forumDetail/286589986407833603
 
 ---
 ## 物料准备
