@@ -1,0 +1,4 @@
+struct examle_t
+{
+    double vel[3];
+}

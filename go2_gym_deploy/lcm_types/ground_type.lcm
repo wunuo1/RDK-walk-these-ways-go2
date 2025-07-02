@@ -1,0 +1,4 @@
+struct ground_type
+{
+    int8_t type;  
+}
